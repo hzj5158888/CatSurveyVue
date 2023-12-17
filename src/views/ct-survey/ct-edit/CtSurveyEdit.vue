@@ -88,7 +88,7 @@
 <script>
 import {ctSurveyInfo, ctSurveyUpdate} from '@/api/ct-survey'
 export default {
-    name: 'SurveyEdit',
+    name: 'CtSurveyEdit',
     data() {
         return {
             num: 2,

@@ -74,6 +74,7 @@ export function ctSurveyUpdate (surveyId, data) {
     data
   })
 }
+
 /**
  * 更新问卷信息
  * @param data
@@ -85,40 +86,7 @@ export function ctSurveyDelete (surveyId) {
     method: 'delete'
   })
 }
-/**
- * 获取问卷的统计信息
- * @param surveyId
- * @returns {*}
- */
-export function ctSurveyReport (surveyId) {
-  const params = {
-    surveyId
-  }
-  return request({
-    url: API.surveyReport,
-    method: 'get',
-    params
-  })
-}
-/**
- * 获取问卷的答卷列表
- * @param pageSize
- * @param current
- * @param surveyId
- * @returns {*}
- */
-export function ctSurveyAnswerList (pageSize, current, surveyId) {
-  const params = {
-    pageSize,
-    current,
-    surveyId
-  }
-  return request({
-    url: API.surveyAnswerList,
-    method: 'get',
-    params
-  })
-}
+
 /**
  * 更新问卷信息
  * @param data
@@ -128,21 +96,6 @@ export function ctSurveyAnswerDelete (responseId) {
   return request({
     url: API.response + '/' + responseId,
     method: 'delete',
-  })
-}
-/**
- * 获取问卷答卷详情
- * @param answerId
- * @returns {*}
- */
-export function ctSurveyAnswerInfo (answerId) {
-  const params = {
-    answerId
-  }
-  return request({
-    url: API.surveyAnswerInfo,
-    method: 'get',
-    params
   })
 }
 

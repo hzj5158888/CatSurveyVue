@@ -32,10 +32,6 @@ export default {
     }
   },
   methods: {
-    downloadAnswerImg (imgSrc) {
-      console.debug(imgSrc)
-      window.location.href = imgSrc
-    },
     copyActiveCode (e, text) {
       // console.debug(this.$children[0].survey)
       console.debug(this.survey)

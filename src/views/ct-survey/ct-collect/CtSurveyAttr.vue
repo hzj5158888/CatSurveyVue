@@ -19,7 +19,7 @@
                         </el-select>
                       </el-col>
                     </el-form-item>
-                    <h5>时间设置</h5>
+                    <h5 v-if="survey.status === '进行中'">时间设置</h5>
                     <div style="padding-left: 10px;">
                       <el-form-item v-if="survey.status === '进行中'">
                           开始时间 &nbsp;
@@ -95,18 +95,19 @@ export default {
       }
 
       this.survey.status = statusMap[this.survey.status];
-      if (this.survey.status === '草稿') {
-        this.survey.endDate = null;
-        this.survey.startDate = null;
-      }
     },
     onSubmit () {
-      console.log('submit!')
       const data = {
         startDate: this.survey.startDate,
         endDate: this.survey.endDate,
         status: this.survey.status
       }
+      if (this.survey.status !== '进行中')
+      {
+        data.startDate = null;
+        data.endDate = null; 
+      }
+
       console.log(data)
       ctSurveyUpdate(this.$route.params.id, data).then((response) => {
         console.log(response)

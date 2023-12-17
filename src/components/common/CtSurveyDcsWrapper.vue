@@ -16,19 +16,24 @@
           <div class="ct-dcs-main-survey-step">
             <div class="ct-dcs-main-survey-step-item" style="padding: 13px 16px;">
               <el-row type="flex" justify="space-between" align="middle" >
-                <el-col :span="3" >
-                  <router-link :to="`${prevPath}/survey/c/url/${survey.id}`" :class="{ 'ct-link-primary' : isAnswerUrl || isSurveySet || isSiteShare || isAnswerWx}" class="ct-link ct-link-1" ><i class="el-icon-link"></i>问卷收集</router-link>
+                <el-col :span="3" v-if="survey.status === '进行中'">
+                  <router-link :to="`${prevPath}/survey/c/url/${survey.id}`" :class="{ 'ct-link-primary' : isAnswerUrl || isSurveySet || isSiteShare}" class="ct-link ct-link-1" ><i class="el-icon-link"></i>问卷收集</router-link>
                 </el-col>
-                <el-col :span="3">
+                <el-col :span="3" v-if="survey.status !== '进行中'">
+                  <router-link :to="`${prevPath}/survey/c/attr/${survey.id}`" :class="{ 'ct-link-primary' : isAnswerUrl || isSurveySet || isSiteShare}" class="ct-link ct-link-1" ><i class="el-icon-link"></i>问卷收集</router-link>
+                </el-col>
+                <el-col :span="3" style="text-align: left;">
                   <router-link :to="`${prevPath}/survey/d/chart/${survey.id}`" :class="{ 'ct-link-primary' : isSurveyChart || isAnswerData }" class="ct-link ct-link-1" ><i class="el-icon-s-data"></i>问卷数据</router-link>
                 </el-col>
+                <el-col :span="3" style="text-align: left;">
+                  <router-link :to="`${prevPath}/survey/d/edit/${survey.id}`" :class="{ 'ct-link-primary' : isSurveyEdit }" class="ct-link ct-link-1" ><i class="el-icon-edit"></i>编辑问卷</router-link>
+                </el-col>
                 <el-col :span="15" style="text-align: right;">
-                  <el-button size="small" @click="handlePush(`${prevPath}/survey/c/url/${survey.id}`)" >答卷地址</el-button>
                 </el-col>
               </el-row>
             </div>
             <div class="ct-dcs-main-survey-step-item" style="padding-left: 16px;">
-              <el-row v-show="isAnswerUrl || isSurveySet || isSiteShare || isAnswerWx">
+              <el-row v-show="isAnswerUrl || isSurveySet || isSiteShare">
                 <el-col :span="3">
                   <router-link v-if="survey.status === '进行中'" :to="`${prevPath}/survey/c/url/${survey.id}`" :class="{ 'ct-link-primary' : isAnswerUrl}" class="ct-link" ><i class="el-icon-link"></i>答卷地址</router-link>
                 </el-col>
@@ -85,20 +90,15 @@ export default {
     isAnswerUrl: {type: Boolean, default: false},
     isSurveySet: {type: Boolean, default: false},
     isSiteShare: {type: Boolean, default: false},
-    isAnswerWx: {type: Boolean, default: false},
     isSurveyChart: {type: Boolean, default: false},
+    isSurveyEdit: {type: Boolean, default: false},
     isAnswerData: {type: Boolean, default: false},
-    isSurveyLog: {type: Boolean, default: false},
-    isAnswerLog: {type: Boolean, default: false}
+    isSurveyLog: {type: Boolean, default: false}
   },
   data () {
     return {
       survey: {
-        sid: '',
         answerUrl: '',
-        answerUrl1: '',
-        answerUrlQR: '',
-        siteCompCodeRoot: '',
         surveyState: ''
       },
       prevPath: '/ct'
@@ -122,7 +122,7 @@ export default {
           return;
         }
         this.survey = response.data
-        this.survey.answerUrl = location.origin + '/#/no-top/ct-survey/answer/' + this.survey.id
+        this.survey.answerUrl = location.origin + '/#/no-top/ct-survey/ct-response/' + this.survey.id
       })
     }
   }

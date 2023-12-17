@@ -78,7 +78,7 @@ import CtSurveyDcsWrapper from '@/components/common/CtSurveyDcsWrapper'
 import { ctSurveyInfo, addResponse } from '@/api/ct-survey'
 
 export default {
-  name: 'SurveyAnswer',
+  name: 'CtSurveyResponse',
   components: {
     CtSurveyDcsWrapper
   },

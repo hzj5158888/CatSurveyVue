@@ -32,6 +32,7 @@
           <el-table
             :data="tableData"
             stripe
+            @row-click="handleRow"
             style="width: 100%">
             <el-table-column type="selection" width="55"></el-table-column>
             <el-table-column label="问卷" >
@@ -165,6 +166,15 @@ export default {
     handlePush: function (to) {
       this.$router.push(to)
     },
+    handleRow(row, row_attr) {
+      if (row_attr.label === '操作')
+        return;
+
+      if (row.status === '进行中')
+        this.handlePush('/ct/survey/c/url/' + row.id)
+      else
+        this.handlePush('/ct/survey/c/attr/' + row.id)
+    },
     handleDelete (index, row) {
       this.$msgbox.confirm('确认删除此问卷吗？', '删除警告', {type: 'warning', confirmButtonText: '确认删除'}).then(() => {
         ctSurveyDelete(row.id).then((response) => {
@@ -262,7 +272,7 @@ export default {
         {
           let data = response.data;
           this.dialogFormVisible = false
-          window.location.href = '/#/ct/survey/d/edit/' + data;
+          this.handlePush('/#/ct/survey/d/edit/' + data)
           this.queryList(1)
         } else {
           this.$message.error('创建问卷失败')

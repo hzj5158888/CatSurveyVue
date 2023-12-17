@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {msgBoxNoLogin, msgBoxNoRole, msgError} from './ct-msg'
+import {msgNoLogin, msgNoRole, msgError} from './ct-msg'
 
 // 全局的 axios 默认值
 axios.defaults.baseURL = process.env.CT_API_URL
@@ -34,9 +34,9 @@ service.interceptors.response.use(
       const data = response.data;
       if (data.status !== undefined) {
         if (data.status === 401) {
-          msgBoxNoLogin()
+          msgNoLogin()
         } else if (data.status === 403) {
-          msgBoxNoRole()
+          msgNoRole()
         } else if (data.status !== 200) {
           let message = `异常码：${data.status}`
           if (data.hasOwnProperty('message')) {
@@ -61,11 +61,11 @@ service.interceptors.response.use(
     } else if (message.includes('Request failed with status code')) {
       const code = message.substr(message.length - 3)
       if (code === '401' || code === '403') {
-        message=null
+        message = null
         if (code === '401') {
-          msgBoxNoLogin()
+          msgNoLogin()
         } else if (code === '403') {
-          msgBoxNoRole()
+          msgNoRole()
         }
       } else {
         message = '系统接口' + message.substr(message.length - 3) + '异常'

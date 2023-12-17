@@ -13,11 +13,10 @@ import CtSurveyAnswer from '@/views/ct-survey/ct-data/CtSurveyAnswer'
 import CtSurveyAnswerInfo from '@/views/ct-survey/ct-data/CtSurveyAnswerInfo'
 import CtUser from '@/views/ct-user/CtUser'
 import CtUserPwd from '@/views/ct-user/CtUserPwd'
-import AdminUserList from '@/views/ct-admin/AdminUserList'
 import Login from '@/views/Login'
 import SignUp from '@/views/SignUp'
-import SurveyAnswer from '@/views/ct-survey/answer/SurveyAnswer'
-import SurveyEdit from '@/views/ct-survey/edit/SurveyEdit'
+import CtSurveyResponse from '@/views/ct-survey/ct-response/CtSurveyResponse'
+import CtSurveyEdit from '@/views/ct-survey/ct-edit/CtSurveyEdit'
 import CtUserEdit from '@/views/ct-user/CtUserEdit'
 
 Vue.use(Router)
@@ -55,8 +54,8 @@ export default new Router({
         },
         {
           path: '/ct/survey/d/edit/:id',
-          name: 'SurveyEdit',
-          component: SurveyEdit
+          name: 'CtSurveyEdit',
+          component: CtSurveyEdit
         },
         {
           path: '/ct/survey/d/chart/:id',
@@ -82,11 +81,6 @@ export default new Router({
           path: '/ct/user/edit',
           name: 'CtUserEdit',
           component: CtUserEdit
-        },
-        {
-          path: '/ct/admin/user',
-          name: 'AdminUserList',
-          component: AdminUserList
         }
       ]
     },
@@ -101,9 +95,9 @@ export default new Router({
           component: CtSurveyAnswerInfo
         },
         {
-          path: '/no-top/ct-survey/answer/:surveyId',
-          name: 'SurveyAnswer',
-          component: SurveyAnswer
+          path: '/no-top/ct-survey/ct-response/:surveyId',
+          name: 'CtSurveyResponse',
+          component: CtSurveyResponse
         }
       ]
     },
