@@ -6,13 +6,12 @@ const path = require('path')
 
 module.exports = {
   dev: {
-
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
       '/api': {
-        target: 'https://4d88dcbf.r18.cpolar.top',//本地开发环境只需要修改这个配置，修改为后端服务地址即可
+        target: 'https://api.cuza.fun/codecat',//本地开发环境只需要修改这个配置，修改为后端服务地址即可
         changeOrigin: true,//如果需要跨域
         pathRewrite: {
                     '^/api': '/api'

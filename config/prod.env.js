@@ -17,7 +17,7 @@
 'use strict'
 module.exports = {
   NODE_ENV: '"production"',
-  CT_API_URL: '"https://4d88dcbf.r18.cpolar.top"',
+  CT_API_URL: '"https://api.cuza.fun/codecat"',
   CT_WEB_URL: '"http://localhost:8080"',
   CT_RESOURCE_URL: '"http://localhost:8080"'
 }
