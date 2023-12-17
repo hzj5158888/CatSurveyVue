@@ -123,13 +123,15 @@ export default {
         },
         querySurvey() 
         {
-            ctSurveyInfo(this.$route.params.id).then((response) => {
+            ctSurveyInfo(this.$route.params.id).then((response) => 
+            {
                 console.log(response);
                 const resultData = response.data
                 let survey = resultData
 
                 let questionList = survey.questionList;
-                for (let i = 0; i < questionList.length; i++) {
+                for (let i = 0; i < questionList.length; i++) 
+                {
                     let cur_question = questionList[i];
                     if (cur_question.type === '文本' || cur_question.type === '单行文本') {
                         continue;
@@ -137,7 +139,7 @@ export default {
 
                     let textList = [];
                     for (let j = 0; j < cur_question.optionList.length; j++)
-                        textList.push(cur_question.optionList[i].content)
+                        textList.push(cur_question.optionList[j].content)
 
                     questionList[i].textList = textList;
                 }
@@ -256,7 +258,7 @@ export default {
                 this.$message('请输入标题内容');
                 return
             }
-            
+
             console.log(this.form);
 
             let survey = {};
