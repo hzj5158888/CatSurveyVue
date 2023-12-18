@@ -79,5 +79,14 @@ module.exports = {
     // `npm run build --report`
     // Set to `true` or `false` to always turn it on or off
     bundleAnalyzerReport: process.env.npm_config_report
+  },
+  css: {
+    loaderOptions: {
+      sass: {    // 这里开始是新增的配置
+        sassOptions: {
+          outputStyle: 'expanded'
+        }
+      }
+    }
   }
 }
