@@ -16,6 +16,7 @@
   "dependencies": {
     "axios": "^0.24.0",
     "clipboard": "^2.0.8",
+    "sass": "1.39.0",
     "dart-sass": "^1.25.0",
     "echarts": "^5.2.2",
     "element-ui": "^2.15.6",
